@@ -12,9 +12,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-
-        return view('tasks.index' ,[
+        $tasks = Task::orderBy('id','desc')->paginate(25);
+        return view('tasks.index', [
             'tasks' => $tasks,
         ]);
     }
@@ -25,7 +24,7 @@ class TasksController extends Controller
     public function create()
     {
         $task = new Task;
-        return view('tasks.create',[
+        return view('tasks.create', [
             'task' => $task,
         ]);
     }
@@ -35,8 +34,15 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーション
+        $request->validate([
+            'content' => 'required',
+            'status' => 'required|max:10',
+        ]);
+
         $task = new Task;
         $task->content = $request->content;
+        $task->status = $request->status;
         $task->save();
         return redirect('/');
     }
@@ -47,7 +53,7 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.show',[
+        return view('tasks.show', [
             'task' => $task,
         ]);
     }
@@ -58,7 +64,7 @@ class TasksController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.edit',[
+        return view('tasks.edit', [
             'task' => $task,
         ]);
     }
@@ -66,12 +72,16 @@ class TasksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'content' => 'required',
+            'status' => 'required|max:10',
+        ]);
         $task = Task::findOrFail($id);
         $task->content = $request->content;
+        $task->status = $request->status;
         $task->save();
-
         return redirect('/');
     }
 

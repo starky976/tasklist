@@ -16,7 +16,7 @@
 
         <div class="container mx-auto">
             {{-- エラーメッセージ --}}
-            {{-- @include('commons.error_messages') --}}
+            @include('commons.error_messages')
 
             @yield('content')
         </div>
