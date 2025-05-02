@@ -31,10 +31,15 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
-            <button type="submit" class="btn btn-primary btn-outline">更新</button>
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 mt-8">
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    {{-- 一覧ページに戻る --}}
+                    <a class="btn btn-outline btn-accent" href="{{ route('tasks.index') }}">タスク一覧ページに戻る</a>
+                </div>
+                <div class="flex gap-4 w-full sm:w-auto justify-end">
+                    <button type="submit" class="btn btn-primary btn-outline">更新</button>
+                </div>
+            </div>
         </form>
     </div>
-
-
 @endsection
