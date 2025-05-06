@@ -15,6 +15,11 @@
             <th>メッセージ</th>
             <td>{{ $task->content }}</td>
         </tr>
+
+        <tr>
+            <th>ステータス</th>
+            <td>{{ $task->status }}</td>
+        </tr>
     </table>
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 mt-8">
         <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">

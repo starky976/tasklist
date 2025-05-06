@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
-use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
+Route::get('/dashboard',[TasksController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// ログイン画面
 Route::middleware('auth')->group(function () {
-    Route::prefix('users/{id}')->group(function () {
-        //tasks
-        Route::resource('tasks',TasksController::class);
-    });
+    //tasks
+    Route::resource('tasks',TasksController::class);
 });
 
 require __DIR__.'/auth.php';
