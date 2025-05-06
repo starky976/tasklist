@@ -5,7 +5,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-10">
             <div class="sm:col-span-2">
                 {{-- 投稿一覧 --}}
-                <a href="{{ route('tasks.index') }}">タスク一覧</a>
+                <a class="btn btn-blue" href="{{ route('tasks.index') }}">タスク一覧</a>
             </div>
         </div>
     @else

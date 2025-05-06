@@ -21,8 +21,9 @@ class TasksController extends Controller
                 'user' => $user,
                 'tasks' => $tasks,
             ];
+            return view('tasks.index', $data);
         }
-        return view('tasks.index', $data);
+        return redirect('/');
     }
 
     /**
@@ -35,9 +36,8 @@ class TasksController extends Controller
             return view('tasks.create', [
                 'task' => $task,
             ]);
-        } else {
-            return redirect('/');
         }
+        return redirect('/');
     }
 
     /**
@@ -85,9 +85,8 @@ class TasksController extends Controller
             return view('tasks.edit', [
                 'task' => $task,
             ]);
-        } else {
-            return redirect('/');
         }
+        return redirect('/');
     }
 
     /**
