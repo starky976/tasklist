@@ -24,6 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
+            // 外部キー制約
+            $table->dropForeign('tasks_user_id_foreign');
+            //user_idカラム削除
             $table->dropColumn('user_id');
         });
     }
